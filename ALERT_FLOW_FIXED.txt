@@ -1,0 +1,12 @@
+BLOOD BRIDGE - ALERT FLOW FIXED
+
+IMPORTANT:
+1. Run RUN_BLOODBRIDGE.bat on Windows.
+2. Open the Vite app at http://localhost:3000.
+3. Go to Emergency Request and submit a request.
+4. The EXACT DONOR ALERT PREVIEW opens IMMEDIATELY. It does NOT wait for the backend.
+5. The preview shows the donor-facing push notification, full request details, recipient delivery log and SMS fallback.
+6. Thalassemia submissions are saved locally immediately and their donor-facing alert preview opens immediately too.
+7. The same blood-heart background image is applied as the blurred background across module sections.
+
+Do NOT open dist/index.html directly. Use RUN_BLOODBRIDGE.bat so the latest src code is served.

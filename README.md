@@ -30,7 +30,7 @@
 Do not open `index.html` directly; this is a Vite React app.
 
 ## GitHub Pages
-The `main` branch deploys the Vite frontend to GitHub Pages through `.github/workflows/deploy-pages.yml`. GitHub Pages serves static files only; registration, login, and live data features need a separately hosted API. Set `VITE_API_BASE` to that API's HTTPS URL before building when you connect a backend.
+The `main` branch deploys the Vite frontend to GitHub Pages through `.github/workflows/deploy-pages.yml`. GitHub Pages serves static files only; registration, login, and live data features need a separately hosted API. Set `VITE_API_BASE` to that API's HTTPS URL before building when you connect a backend. The Flask backend is not included in the Pages deployment.
 
 ## Motion UI locations
 - Scroll Word Reveal: home page after the module cards.
@@ -47,4 +47,12 @@ The donor photo includes visible attribution in the card UI. The other two are C
 
 
 ## Windows Rollup fix
-If Vite reports a missing platform-specific Rollup package, delete `node_modules` and `package-lock.json` once, then run `npm.cmd install --legacy-peer-deps --include=optional` again. Rollup installs its native package for the current operating system.
+If Vite reports `Cannot find module '@rollup/rollup-win32-x64-msvc'`, delete `node_modules` and `package-lock.json` once, then run `npm.cmd install --legacy-peer-deps --include=optional` again. This project pins Rollup 4.34.9 and includes the Windows x64 native Rollup package explicitly so the Vite build does not depend on npm optional-dependency recovery.
+
+
+## Thalassemia Care Portal UI update
+- Calendar event dates now show explicit **Completed** (green) and **Scheduled** (amber) labels inside each date cell.
+- Blood Bridge accent red is darker to reduce brightness.
+- The care portal uses the supplied soft blush background with readable white panels.
+- The standalone `thalassemia-care.html` includes the patient registration form and local browser persistence.
+- Open `thalassemia-care.html` directly to preview the care portal. Keep `blood-bridge-background.png` beside it.

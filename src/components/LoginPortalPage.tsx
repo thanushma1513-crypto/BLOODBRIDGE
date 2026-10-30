@@ -40,14 +40,14 @@ export const LoginPortalPage: React.FC<LoginPortalPageProps> = ({
   const [activeTab, setActiveTab] = useState<'user' | 'hospital' | 'register'>('user');
 
   // Citizen Login Form State
-  const [userIdentifier, setUserIdentifier] = useState('demo@example.invalid');
-  const [userPassword, setUserPassword] = useState('');
+  const [userIdentifier, setUserIdentifier] = useState('priya.b@example.com');
+  const [userPassword, setUserPassword] = useState('password123');
   const [userShowPassword, setUserShowPassword] = useState(false);
   const [userAlertOptIn, setUserAlertOptIn] = useState(true);
 
   // Hospital Login Form State
-  const [hospitalIdentifier, setHospitalIdentifier] = useState('demo@example.invalid');
-  const [hospitalPassword, setHospitalPassword] = useState('');
+  const [hospitalIdentifier, setHospitalIdentifier] = useState('sarah@citycare.org');
+  const [hospitalPassword, setHospitalPassword] = useState('password123');
   const [hospitalShowPassword, setHospitalShowPassword] = useState(false);
   const [hospitalStation, setHospitalStation] = useState('Emergency Trauma Bay 1');
 
@@ -71,7 +71,7 @@ export const LoginPortalPage: React.FC<LoginPortalPageProps> = ({
     e.preventDefault();
     setErrorMessage(null);
     try {
-      const input = userIdentifier.trim().toLowerCase() || 'demo@example.invalid';
+      const input = userIdentifier.trim().toLowerCase() || 'volunteer@bloodbridge.local';
       const foundLocal = existingUsers.find(
         (u) => u.role === 'USER' &&
           (u.email.toLowerCase() === input ||
@@ -80,7 +80,7 @@ export const LoginPortalPage: React.FC<LoginPortalPageProps> = ({
       const email = foundLocal?.email || input;
       const result = await api<{ user: User }>('/api/login', {
         method: 'POST',
-        body: JSON.stringify({ email, password: userPassword || '', role: 'USER' }),
+        body: JSON.stringify({ email, password: userPassword || 'password123', role: 'USER' }),
       });
       onLogin(result.user);
     } catch (err: any) {
@@ -88,8 +88,8 @@ export const LoginPortalPage: React.FC<LoginPortalPageProps> = ({
       const fallbackUser: User = {
         id: 'u-user',
         name: userIdentifier.split('@')[0] || 'Community Donor',
-        email: userIdentifier || 'demo@example.invalid',
-        phone: '',
+        email: userIdentifier || 'volunteer@bloodbridge.local',
+        phone: '+91 98765 11223',
         role: 'USER',
         age: 26,
         alertOptIn: true
@@ -103,7 +103,7 @@ export const LoginPortalPage: React.FC<LoginPortalPageProps> = ({
     e.preventDefault();
     setErrorMessage(null);
     try {
-      const input = hospitalIdentifier.trim().toLowerCase() || 'demo@example.invalid';
+      const input = hospitalIdentifier.trim().toLowerCase() || 'hospital@bloodbridge.local';
       const foundLocal = existingUsers.find(
         (u) => u.role === 'HOSPITAL' &&
           (u.email.toLowerCase() === input || (u.hospital_id || '').toLowerCase() === input)
@@ -111,7 +111,7 @@ export const LoginPortalPage: React.FC<LoginPortalPageProps> = ({
       const email = foundLocal?.email || input;
       const result = await api<{ user: User }>('/api/login', {
         method: 'POST',
-        body: JSON.stringify({ email, password: hospitalPassword || '', role: 'HOSPITAL' }),
+        body: JSON.stringify({ email, password: hospitalPassword || 'password123', role: 'HOSPITAL' }),
       });
       onLogin(result.user);
     } catch (err: any) {
@@ -119,8 +119,8 @@ export const LoginPortalPage: React.FC<LoginPortalPageProps> = ({
       const fallbackHospital: User = {
         id: 'u-hospital',
         name: hospitalIdentifier.split('@')[0] || 'CityCare Emergency Hospital',
-        email: hospitalIdentifier || 'demo@example.invalid',
-        phone: '',
+        email: hospitalIdentifier || 'hospital@bloodbridge.local',
+        phone: '+91 90000 11223',
         role: 'HOSPITAL',
         hospitalName: hospitalIdentifier || 'CityCare Hospital',
         alertOptIn: true
@@ -286,7 +286,7 @@ export const LoginPortalPage: React.FC<LoginPortalPageProps> = ({
                       type="text"
                       value={userIdentifier}
                       onChange={(e) => setUserIdentifier(e.target.value)}
-                      placeholder="e.g. demo@example.invalid or +91 98765 11223"
+                      placeholder="e.g. priya.b@example.com or +91 98765 11223"
                       required
                       className="w-full rounded-xl border border-slate-800 bg-slate-900 py-2.5 pl-9 pr-4 text-xs text-white placeholder-slate-500 focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500"
                     />
@@ -296,7 +296,7 @@ export const LoginPortalPage: React.FC<LoginPortalPageProps> = ({
                 <div>
                   <div className="flex items-center justify-between mb-1">
                     <label className="text-xs font-semibold text-slate-300">Password</label>
-                    <span className="text-[10px] text-slate-500">Default demo: </span>
+                    <span className="text-[10px] text-slate-500">Default demo: hospital123</span>
                   </div>
                   <div className="relative">
                     <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500" />
@@ -434,7 +434,7 @@ export const LoginPortalPage: React.FC<LoginPortalPageProps> = ({
                       type="text"
                       value={hospitalIdentifier}
                       onChange={(e) => setHospitalIdentifier(e.target.value)}
-                      placeholder="e.g. demo@example.invalid or HOSP-NY-8891"
+                      placeholder="e.g. sarah@citycare.org or HOSP-NY-8891"
                       required
                       className="w-full rounded-xl border border-slate-800 bg-slate-900 py-2.5 pl-9 pr-4 text-xs text-white placeholder-slate-500 focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500"
                     />
@@ -444,7 +444,7 @@ export const LoginPortalPage: React.FC<LoginPortalPageProps> = ({
                 <div>
                   <div className="flex items-center justify-between mb-1">
                     <label className="text-xs font-semibold text-slate-300">Password / Security PIN</label>
-                    <span className="text-[10px] text-slate-500">Default demo: </span>
+                    <span className="text-[10px] text-slate-500">Default demo: hospital123</span>
                   </div>
                   <div className="relative">
                     <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500" />
@@ -603,7 +603,7 @@ export const LoginPortalPage: React.FC<LoginPortalPageProps> = ({
                       type="email"
                       value={regEmail}
                       onChange={(e) => setRegEmail(e.target.value)}
-                      placeholder="demo@example.invalid"
+                      placeholder="name@example.com"
                       required
                       className="w-full rounded-xl border border-slate-800 bg-slate-900 py-2.5 px-3 text-xs text-white focus:border-red-500 focus:outline-none"
                     />

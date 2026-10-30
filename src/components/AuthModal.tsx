@@ -71,8 +71,8 @@ export const AuthModal: React.FC<AuthModalProps> = ({
         hospital_name: role === 'HOSPITAL' ? hospitalName : undefined,
         hospital_id: role === 'HOSPITAL' ? hospitalId : undefined,
         hospital_address: role === 'HOSPITAL' ? hospitalAddress : undefined,
-        latitude: 0,
-        longitude: 0,
+        latitude: 16.5062,
+        longitude: 80.6480,
         alert_opt_in: true,
         created_at: new Date().toISOString(),
       };
@@ -113,8 +113,8 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             <button
               type="button"
               onClick={() => {
-                setEmail('demo@example.invalid');
-                setPassword('');
+                setEmail('rahul@example.com');
+                setPassword('password123');
               }}
               className="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-[11px] text-slate-200"
             >
@@ -123,8 +123,8 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             <button
               type="button"
               onClick={() => {
-                setEmail('demo@example.invalid');
-                setPassword('');
+                setEmail('sarah@citycare.org');
+                setPassword('password123');
               }}
               className="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-[11px] text-slate-200"
             >
@@ -133,8 +133,8 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             <button
               type="button"
               onClick={() => {
-                setEmail('demo@example.invalid');
-                setPassword('');
+                setEmail('priya.b@example.com');
+                setPassword('password123');
               }}
               className="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-[11px] text-slate-200"
             >
@@ -285,7 +285,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="demo@example.invalid"
+              placeholder="user@example.com"
               className="w-full rounded-xl border border-slate-700 bg-slate-900 px-3 py-2 text-xs text-white"
             />
           </div>
