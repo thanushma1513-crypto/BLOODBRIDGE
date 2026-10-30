@@ -30,7 +30,6 @@
     "tsx": "4.19.2"
   },
   "overrides": {
-    "rollup": "4.34.9",
-    "@rollup/rollup-win32-x64-msvc": "4.34.9"
+    "rollup": "4.34.9"
   }
 }

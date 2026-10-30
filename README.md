@@ -47,4 +47,4 @@ The donor photo includes visible attribution in the card UI. The other two are C
 
 
 ## Windows Rollup fix
-If Vite reports `Cannot find module '@rollup/rollup-win32-x64-msvc'`, delete `node_modules` and `package-lock.json` once, then run `npm.cmd install --legacy-peer-deps --include=optional` again. This project pins Rollup 4.34.9 and includes the Windows x64 native Rollup package explicitly so the Vite build does not depend on npm optional-dependency recovery.
+If Vite reports a missing platform-specific Rollup package, delete `node_modules` and `package-lock.json` once, then run `npm.cmd install --legacy-peer-deps --include=optional` again. Rollup installs its native package for the current operating system.
