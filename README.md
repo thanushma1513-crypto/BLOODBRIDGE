@@ -1,11 +1,5 @@
 # Blood Bridge — Full Prototype + Motion UI
 
-## GitHub Pages deployment
-- `.github/workflows/deploy-pages.yml` builds and deploys the site on pushes to `main` and on manual workflow runs.
-- The Pages build publishes the frontend embedded in `app.py` as the home page, plus `thalassemia-care.html` and its background image. `scripts/build_pages.py` assembles those static files.
-- In the repository, set **Settings → Pages → Build and deployment → Source** to **GitHub Actions**. The first successful workflow run publishes at `https://thanushma1513-crypto.github.io/BLOODBRIDGE/`.
-- GitHub Pages serves static files only. The main app's Flask API endpoints (`/api/...`) need a separately hosted Flask backend for account, donor, and request data actions to work online. The Thalassemia Care page stores its prototype data in the browser.
-
 ## Included
 - Separate User Login and Hospital Login
 - Animated header with Emergency Scan + Become a Donor actions
@@ -35,6 +29,9 @@
 
 Do not open `index.html` directly; this is a Vite React app.
 
+## GitHub Pages
+The `main` branch deploys the Vite frontend to GitHub Pages through `.github/workflows/deploy-pages.yml`. GitHub Pages serves static files only; registration, login, and live data features need a separately hosted API. Set `VITE_API_BASE` to that API's HTTPS URL before building when you connect a backend.
+
 ## Motion UI locations
 - Scroll Word Reveal: home page after the module cards.
 - Smooth Drawer: Emergency actions button in the home page strip.
@@ -48,12 +45,6 @@ The three Core Pathway cards now use real-world medical photos loaded from Wikim
 
 The donor photo includes visible attribution in the card UI. The other two are CC0/public-domain dedications.
 
+
 ## Windows Rollup fix
 If Vite reports `Cannot find module '@rollup/rollup-win32-x64-msvc'`, delete `node_modules` and `package-lock.json` once, then run `npm.cmd install --legacy-peer-deps --include=optional` again. This project pins Rollup 4.34.9 and includes the Windows x64 native Rollup package explicitly so the Vite build does not depend on npm optional-dependency recovery.
-
-## Thalassemia Care Portal UI update
-- Calendar event dates now show explicit **Completed** (green) and **Scheduled** (amber) labels inside each date cell.
-- Blood Bridge accent red is darker to reduce brightness.
-- The care portal uses the supplied soft blush background with readable white panels.
-- The standalone `thalassemia-care.html` includes the patient registration form and local browser persistence.
-- Open `thalassemia-care.html` directly to preview the care portal. Keep `blood-bridge-background.png` beside it.
